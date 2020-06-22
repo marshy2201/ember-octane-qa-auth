@@ -1,4 +1,4 @@
-<li class="list-group-item {{if (and (eq @index 0) @answer.votes) "list-group-item-success"}}">
+<li class="list-group-item {{if (and (eq @index 0) (gt @answer.votes 0)) "list-group-item-success"}}">
   <div class="d-flex justify-content-between">
     <div class="d-flex flex-column justify-content-between">
 

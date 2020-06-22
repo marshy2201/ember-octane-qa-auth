@@ -31,8 +31,8 @@
     <div>Votes</div>
   </div>
   <ul class="list-group list-group-flush">
-    {{#each (sort-by "updatedAt:desc" @model.answers) as |answer|}}
-      <Answer @answer={{answer}} @model={{@model}} />
+    {{#each this.answers as |answer index|}}
+      <Answer @answer={{answer}} @model={{@model}} @index={{index}} />
     {{else}}
       <li class="list-group-item">No answers added.</li>
     {{/each}}

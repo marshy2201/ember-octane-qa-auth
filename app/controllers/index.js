@@ -7,7 +7,7 @@ export default class IndexController extends Controller {
   @tracked question = null;
 
   /**
-   * Sort question by date created at
+   * Sort questions by date created at
    */
   @sort('model', function(a, b) {
     if (b.createdAt > a.createdAt) {
@@ -22,11 +22,19 @@ export default class IndexController extends Controller {
    * Add a Question
    */
   @action 
-  async addQuestion() {
+  addQuestion() {
     const newQuestion = this.store.createRecord('question', { text: this.question });
     
     newQuestion.save();
 
     this.question = null;
+  }
+
+  /**
+   * Remove a Question
+   */
+  @action
+  removeQuestion(question) {
+    question.destroyRecord();
   }
 }

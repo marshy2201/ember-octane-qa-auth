@@ -1,0 +1,40 @@
+<LinkTo @route="index"><FaIcon @icon="long-arrow-alt-left" class="mr-1" /> Return to Questions</LinkTo>
+
+{{!-- Question --}}
+<div class="card mt-3">
+  <div class="card-header">Question</div>
+  <div class="card-body">{{@model.text}}</div>
+</div>
+
+{{!-- Add Answer --}}
+<BsForm @model={{this}} @onSubmit={{this.addAnswer}} class="mt-5" as |form|>
+  <form.element  
+    @placeholder="Add answer..." 
+    @property="answer" 
+    @required={{true}}
+    as |el|
+  >
+    <div class="input-group">
+      <el.control />
+      <div class="input-group-append">
+        <button class="btn btn-secondary" type="submit">Add</button>
+      </div>
+    </div>
+  </form.element>
+</BsForm>
+
+
+{{!-- Answers --}}
+<div class="card mt-3">
+  <div class="card-header d-flex justify-content-between">
+    <div>Answers</div>
+    <div>Votes</div>
+  </div>
+  <ul class="list-group list-group-flush">
+    {{#each (sort-by "updatedAt:desc" @model.answers) as |answer|}}
+      <Answer @answer={{answer}} @model={{@model}} />
+    {{else}}
+      <li class="list-group-item">No answers added.</li>
+    {{/each}}
+  </ul>
+</div>

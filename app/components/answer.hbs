@@ -1,0 +1,39 @@
+<li class="list-group-item">
+  <div class="d-flex justify-content-between">
+    <div class="d-flex flex-column justify-content-between">
+
+      {{!-- answer --}}
+      <p>
+        {{#if this.edit}}
+          <Input @value={{@answer.text}} class="form-control" />
+        {{else}}
+          {{@answer.text}}
+        {{/if}}
+      </p>
+
+      <small>
+        {{!-- updated date --}}
+        {{moment-format @answer.updatedAt "DD/MM/YYYY h:mma"}} 
+
+        {{!-- edit & save --}}
+        <a role="button" {{on "click" this.editAnswer}}>
+          <FaIcon @icon={{if this.edit "save" "edit"}} class="ml-2 mr-1 text-primary" />
+          <BsTooltip @placement="top" @title={{if this.edit "Save" "Edit"}} />
+        </a>
+
+        {{!-- remove --}}
+        <a role="button" {{on "click" this.removeAnswer}}>
+          <FaIcon @icon="trash-alt" class="mx-1 text-danger" />
+          <BsTooltip @placement="top" @title="Remove" />
+        </a>
+      </small>
+    </div>
+
+    {{!-- Vote --}}
+    <div class="d-flex flex-column align-items-center">
+      <a role="button" {{on "click" (fn this.vote "up")}}><FaIcon @icon="caret-up" @size="2x" class="text-success"/></a>
+      <span class="vote-number">{{@answer.votes}}</span>
+      <a role="button" {{on "click" (fn this.vote "down")}}><FaIcon @icon="caret-down" @size="2x" class="text-danger" /></a>
+    </div>
+  </div>
+</li>

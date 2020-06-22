@@ -1,5 +1,8 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-<WelcomePage />
-{{!-- Feel free to remove this! --}}
-
-{{outlet}}
+<div class="container-fluid px-0 mb-4">
+  <nav class="navbar navbar-dark bg-dark align-items-center">
+    <LinkTo @route="index" class="navbar-brand w-100 text-center">QA</LinkTo>
+  </nav>
+</div>
+<div class="container">
+  {{outlet}}
+</div>

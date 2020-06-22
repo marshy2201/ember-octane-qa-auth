@@ -1,0 +1,28 @@
+{{!-- Add Question --}}
+<h4>Add a Question</h4>
+<BsForm @model={{this}} @onSubmit={{this.addQuestion}} class="mb-4 mt-3" as |form|>
+  <form.element  
+    @placeholder="question..." 
+    @property="question" 
+    @required={{true}}
+    as |el|
+  >
+    <div class="input-group">
+      <el.control />
+      <div class="input-group-append">
+        <button class="btn btn-secondary" type="submit">Add</button>
+      </div>
+    </div>
+  </form.element>
+</BsForm>
+
+{{!-- Questions --}}
+<h4>Questions</h4>
+<div class="list-group mt-3">
+  {{#each this.questions as |question|}}
+    <LinkTo @route="question" @model={{question.id}} class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+      {{question.text}}
+      <span class="badge badge-secondary badge-pill">Answers {{question.answers.length}}</span>
+    </LinkTo>
+  {{/each}}
+</div>

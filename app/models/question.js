@@ -1,4 +1,4 @@
-import Model, { attr } from '@ember-data/model';
+import Model, { attr, belongsTo } from '@ember-data/model';
 
 export default class QuestionModel extends Model {
   @attr('string') text;
@@ -8,4 +8,6 @@ export default class QuestionModel extends Model {
     }
   }) createdAt;
   @attr answers;
+
+  @belongsTo('user') createdBy;
 }

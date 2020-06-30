@@ -1,0 +1,14 @@
+<div class="login-container bg-dark d-flex align-items-center justify-content-center">
+  <BsForm @model={{this}} @onSubmit={{this.authenticate}} class="form-signin text-white" as |form|>
+    <h3>QA Login</h3>
+    <hr class="bg-white">
+    <form.element @controlType="email" @label="Email" @placeholder="Email" @property="email" @required={{true}} />
+    <form.element @controlType="password" @label="Password" @placeholder="Password" @property="password" @required={{true}} />
+    {{#if this.errorMessage}}
+      <small class="text-danger">{{this.errorMessage}}</small>
+    {{/if}}
+    <div class="d-flex justify-content-end">
+      <BsButton @defaultText="Login" @type="primary" @buttonType="submit" class="px-5" />
+    </div>
+  </BsForm>
+</div>

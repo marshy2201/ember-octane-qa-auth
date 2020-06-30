@@ -1,8 +1,15 @@
-<div class="container-fluid px-0 mb-4">
-  <nav class="navbar navbar-dark bg-dark align-items-center">
-    <LinkTo @route="index" class="navbar-brand w-100 text-center">QA</LinkTo>
+{{#if this.session.isAuthenticated}}
+  <nav class="navbar navbar-dark bg-dark mb-4">
+    <div class="container d-flex justify-content-between">
+      <div></div>
+      <LinkTo @route="authenticated.index" class="navbar-brand">QA</LinkTo>
+      <BsButton @defaultText="Logout" @type="secondary" @size="sm" @onClick={{action "logout"}} />
+    </div>
   </nav>
-</div>
-<div class="container">
+  
+  <div class="container">
+    {{outlet}}
+  </div>
+{{else}}
   {{outlet}}
-</div>
+{{/if}}

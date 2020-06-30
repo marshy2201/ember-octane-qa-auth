@@ -2,8 +2,14 @@
   <nav class="navbar navbar-dark bg-dark mb-4">
     <div class="container d-flex justify-content-between">
       <div></div>
-      <LinkTo @route="authenticated.index" class="navbar-brand">QA</LinkTo>
-      <BsButton @defaultText="Logout" @type="secondary" @size="sm" @onClick={{action "logout"}} />
+      <LinkTo @route="authenticated.index" class="navbar-brand mr-0">QA</LinkTo>
+      <div class="d-flex align-items-center text-white">
+        <div class="mr-4">
+          <FaIcon @icon="user" class="mr-1" />
+          {{this.currentUser.user.fullName}}
+        </div>
+        <BsButton @defaultText="Logout" @type="secondary" @size="sm" @onClick={{action "logout"}} />
+      </div>
     </div>
   </nav>
   

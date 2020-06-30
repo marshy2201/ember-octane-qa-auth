@@ -1,0 +1,16 @@
+<BsForm @model={{this}} @onSubmit={{this.register}} class="form-signin text-white" as |form|>
+  <h3>QA Register</h3>
+  <hr class="bg-white">
+  <form.element @label="First Name" @placeholder="First name" @property="firstName" @required={{true}} />
+  <form.element @label="Last Name" @placeholder="Last name" @property="lastName" @required={{true}} />
+  <form.element @controlType="email" @label="Email" @placeholder="Email" @property="email" @required={{true}} />
+  <form.element @controlType="password" @label="Password" @placeholder="Password" @property="password" @required={{true}} />
+  <form.element @controlType="password" @label="Retype Password" @placeholder="Retype password" @property="retypePassword" @required={{true}} />
+  {{#if this.errorMessage}}
+    <small class="text-danger">{{this.errorMessage}}</small>
+  {{/if}}
+  <div class="d-flex justify-content-end mt-3">
+    <LinkTo @route="login" class="btn btn-secondary" class="mr-2">Already have an account?</LinkTo>
+    <BsButton @defaultText="Submit" @type="primary" @buttonType="submit" class="px-4" />
+  </div>
+</BsForm>

@@ -26,7 +26,10 @@ export default class IndexController extends Controller {
    */
   @action 
   addQuestion() {
-    const newQuestion = this.store.createRecord('question', { text: this.question });
+    const newQuestion = this.store.createRecord('question', { 
+      text: this.question, 
+      createdBy: this.currentUser.user 
+    });
     
     newQuestion.save();
 

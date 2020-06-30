@@ -22,13 +22,24 @@
   {{#each this.questions as |question|}}
     <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
       {{!-- Link to question route --}}
-      <LinkTo @route="authenticated.question" @model={{question.id}} class="d-flex justify-content-between align-items-center list-group-item-action">
-        {{question.text}}
-        <span class="badge badge-secondary badge-pill mr-3">Answers {{question.answers.length}}</span>
+      <LinkTo 
+        @route="authenticated.question" 
+        @model={{question.id}} 
+        class="d-flex justify-content-between align-items-center list-group-item-action"
+      >
+        <div>
+          <p>{{question.text}}</p>
+          <div class="d-flex flex-column align-items-start">
+            <span class="badge badge-secondary badge-pill mb-2 px-4">No. of Answers - {{question.answers.length}}</span>
+            <small class="text-black-50">Created By {{question.createdBy.fullName}}</small>
+          </div>
+        </div>
       </LinkTo>
 
       {{!-- Delete question --}}
-      <a role="button" {{on "click" (fn this.removeQuestion question)}}><FaIcon @icon="times" class="text-danger" /></a>
+      {{#if (eq question.createdBy.id this.currentUser.user.id)}}
+        <a role="button" {{on "click" (fn this.removeQuestion question)}}><FaIcon @icon="times" class="text-danger" /></a>
+      {{/if}}
     </li>
   {{/each}}
 </div>

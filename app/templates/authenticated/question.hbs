@@ -2,7 +2,10 @@
 
 {{!-- Question --}}
 <div class="card mt-3">
-  <div class="card-header">Question</div>
+  <div class="card-header d-flex justify-content-between">
+    Question
+    <small>Created by {{@model.question.createdBy.fullName}}</small>
+  </div>
   <div class="card-body">{{@model.question.text}}</div>
 </div>
 

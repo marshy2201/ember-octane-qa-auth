@@ -11,21 +11,26 @@
         {{/if}}
       </p>
 
-      <small>
+      {{!-- added by --}}
+      <small>Answer by {{#with (find-by "id" @answer.addedBy @model.users) as |user|}}{{user.fullName}}{{/with}}</small>
+      
+      <small class="text-black-50">
         {{!-- updated date --}}
         {{moment-format @answer.updatedAt "DD/MM/YYYY h:mma"}} 
 
-        {{!-- edit & save --}}
-        <a role="button" {{on "click" this.editAnswer}}>
-          <FaIcon @icon={{if this.edit "save" "edit"}} class="ml-2 mr-1 text-primary" />
-          <BsTooltip @placement="top" @title={{if this.edit "Save" "Edit"}} />
-        </a>
+        {{#if (eq @answer.addedBy this.currentUser.user.id)}}
+          {{!-- edit & save --}}
+          <a role="button" {{on "click" this.editAnswer}}>
+            <FaIcon @icon={{if this.edit "save" "edit"}} class="ml-2 mr-1 text-primary" />
+            <BsTooltip @placement="top" @title={{if this.edit "Save" "Edit"}} />
+          </a>
 
-        {{!-- remove --}}
-        <a role="button" {{on "click" this.removeAnswer}}>
-          <FaIcon @icon="trash-alt" class="mx-1 text-danger" />
-          <BsTooltip @placement="top" @title="Remove" />
-        </a>
+          {{!-- remove --}}
+          <a role="button" {{on "click" this.removeAnswer}}>
+            <FaIcon @icon="trash-alt" class="mx-1 text-danger" />
+            <BsTooltip @placement="top" @title="Remove" />
+          </a>
+        {{/if}}
       </small>
     </div>
 

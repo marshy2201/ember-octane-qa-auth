@@ -12,7 +12,7 @@ export default class IndexController extends Controller {
   /**
    * Sort questions by date created at
    */
-  @sort('model', function(a, b) {
+  @sort('model.questions', function(a, b) {
     if (b.createdAt > a.createdAt) {
       return 1;
     } 

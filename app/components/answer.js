@@ -1,8 +1,11 @@
 import Component from '@glimmer/component';
 import { action, set } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
+import { inject as service } from '@ember/service';
 
 export default class AnswerComponent extends Component {
+  @service currentUser;
+  
   @tracked edit = false;
 
   /**
@@ -16,7 +19,7 @@ export default class AnswerComponent extends Component {
       // update updated date
       set(answer, 'updatedAt', new Date());
 
-      await model.save();
+      await model.question.save();
 
       this.edit = false;
     } else {
@@ -31,7 +34,7 @@ export default class AnswerComponent extends Component {
   removeAnswer() {
     const { model, answer } = this.args;
 
-    model.answers.removeObject(answer);
+    model.question.answers.removeObject(answer);
 
     model.save();
   }
@@ -49,6 +52,6 @@ export default class AnswerComponent extends Component {
       set(answer, "votes", answer.votes - 1);
     }
 
-    model.save();
+    model.question.save();
   }
 }

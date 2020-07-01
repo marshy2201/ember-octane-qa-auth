@@ -1,5 +1,6 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
+import RSVP from 'rsvp';
 
 export default class AuthenticatedRoute extends Route {
   @service session;
@@ -9,6 +10,9 @@ export default class AuthenticatedRoute extends Route {
   }
 
   model() {
-    return this.store.findAll('question');
+    return RSVP.hash({
+      questions: this.store.findAll('question'),
+      users: this.store.findAll('user')
+    });
   }
 }

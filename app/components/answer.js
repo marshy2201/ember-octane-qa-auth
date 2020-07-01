@@ -42,7 +42,7 @@ export default class AnswerComponent extends Component {
 
     model.question.answers.removeObject(answer);
 
-    model.save();
+    model.question.save();
   }
 
   /**

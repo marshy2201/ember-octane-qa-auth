@@ -10,3 +10,7 @@
   width: 100%;
   max-width: 350px;
 }
+
+.error-container {
+  min-height: calc(100vh - 128px);
+}

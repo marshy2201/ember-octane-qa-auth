@@ -12,4 +12,5 @@ Router.map(function() {
     this.route('question', { path: '/question/:qa_id' });
   });
   this.route('register');
+  this.route('error', { path: '/*path' });
 });

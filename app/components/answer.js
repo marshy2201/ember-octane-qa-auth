@@ -8,6 +8,9 @@ export default class AnswerComponent extends Component {
   
   @tracked edit = false;
 
+  /**
+   * Check user logged in has voted for this answer
+   */
   get haveVoted() {
     const haveVoted = this.args.answer.usersVoted.findBy('user', this.currentUser.user.id);
     

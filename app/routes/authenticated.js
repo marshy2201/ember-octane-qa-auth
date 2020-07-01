@@ -6,6 +6,7 @@ export default class AuthenticatedRoute extends Route {
   @service session;
   
   beforeModel(transition) {
+    // check if authentication is required, if so redirect to login route
     this.session.requireAuthentication(transition, 'login');
   }
 

@@ -8,6 +8,12 @@ export default class AnswerComponent extends Component {
   
   @tracked edit = false;
 
+  get haveVoted() {
+    const haveVoted = this.args.answer.usersVoted.findBy('user', this.currentUser.user.id);
+    
+    return haveVoted;
+  }
+
   /**
    * Edit Answer
    */
@@ -45,13 +51,36 @@ export default class AnswerComponent extends Component {
   @action
   vote(vote) {
     const { model, answer } = this.args;
+    const { id } = this.currentUser.user;
 
-    if (vote === "up") {
-      set(answer, "votes", answer.votes + 1);
-    } else {
-      set(answer, "votes", answer.votes - 1);
+    const alreadyVoted = answer.usersVoted.findBy('user', id);
+    let previousVote = null;
+
+    if (alreadyVoted) {
+      previousVote = alreadyVoted.voted;
     }
 
-    model.question.save();
+    // check if vote sent is different from previous vote
+    if (previousVote !== vote) {
+      let voted;
+
+      if (vote === "up") {
+        set(answer, "votes", answer.votes + 1);
+        voted = 'up';
+      } else {
+        set(answer, "votes", answer.votes - 1);
+        voted = 'down';
+      }
+
+      // remove previous vote from array
+      if (previousVote) {
+        answer.usersVoted.removeObject(alreadyVoted);
+      } else {
+        // add new vote
+        answer.usersVoted.pushObject({ user: id, voted });
+      }
+
+      model.question.save();
+    }
   }
 }

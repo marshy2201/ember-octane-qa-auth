@@ -31,7 +31,8 @@ export default class QuestionController extends Controller {
       createdAt: new Date(),
       updatedAt: new Date,
       votes: 0,
-      addedBy: this.currentUser.user.id
+      addedBy: this.currentUser.user.id,
+      usersVoted: []
     });
 
     model.question.save();

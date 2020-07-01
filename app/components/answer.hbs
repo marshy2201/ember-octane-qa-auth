@@ -36,9 +36,13 @@
 
     {{!-- Vote --}}
     <div class="d-flex flex-column align-items-center">
-      <a role="button" {{on "click" (fn this.vote "up")}}><FaIcon @icon="caret-up" @size="2x" class="text-success"/></a>
+      <a role="button" {{on "click" (fn this.vote "up")}}>
+        <FaIcon @icon="caret-up" @size="2x" class={{if (eq this.haveVoted.voted "up") "text-success" "text-black-50"}} />
+      </a>
       <span class="vote-number">{{@answer.votes}}</span>
-      <a role="button" {{on "click" (fn this.vote "down")}}><FaIcon @icon="caret-down" @size="2x" class="text-danger" /></a>
+      <a role="button" {{on "click" (fn this.vote "down")}}>
+        <FaIcon @icon="caret-down" @size="2x" class={{if (eq this.haveVoted.voted "down") "text-danger" "text-black-50"}} />
+      </a>
     </div>
   </div>
 </li>
